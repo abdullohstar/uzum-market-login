@@ -3,19 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="">
+    <title>Telefon raqam formasi</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Button styles */
+        button {
+            position: relative;
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover animations for the button */
+        button:hover {
+            animation: pulse 1.5s ease-in-out infinite, glow 1.5s ease-in-out infinite, rotateButton 0.5s ease-out forwards;
+            color: #FF5733; /* Change text color */
+            background-color: #28a745; /* Change button color */
+        }
+
+        /* Stars shooting effect */
+        .stars {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stars span {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0;
+            animation: shootStars 1s forwards;
+        }
+
+        /* Shooting stars animation */
+        @keyframes shootStars {
+            0% {
+                transform: scale(0) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) translate(-100px, -100px);
+                opacity: 0;
+            }
+        }
+
+        /* Pulsing animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Glowing effect */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Button shadow lift effect */
+        button:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button rotate effect */
+        @keyframes rotateButton {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Mobile Responsiveness - Adjust styles for small screens */
+        @media (max-width: 500px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h4 {
+                font-size: 14px;
+            }
+
+            input {
+                width: 90%;
+                padding: 10px;
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            button {
+                width: 90%;
+                padding: 15px 25px;
+                font-size: 18px;
+                border-radius: 10px;
+            }
+
+            /* Adjust button for small screens with larger text */
+            button:hover {
+                animation: pulse 1.5s ease-in-out infinite, glow 1.5s ease-in-out infinite, rotateButton 0.5s ease-out forwards;
+                font-size: 16px;
+            }
+
+            .stars {
+                width: 100%;
+                height: 100%;
+                top: 40%;
+                left: 50%;
+            }
+
+            /* Adjust cross button position */
+            .cross {
+                font-size: 24px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-   <form action="">
-    <a href="http://127.0.0.1:5500/index.html" class="cross">❌</a>
-<h2>Telefon raqamingizni kiriting</h2>
-<h4>Tasdiqlash kodini SMS orqali yuboramiz</h4>
-<input type="tel" placeholder="+998 00 000-00-00"> <br>
-<button>Kodni olish</button>
-<p>Avtotizatsiyadan o'tish orqali siz <a href="https://legal.uzum.uz/privacy-policy-uz.html">shaxsiy <br> ma'lumotlarni qayta ishlash siyosatiga rozilik <br> bildirasiz</a>
-</p>
-   </form> 
+   <form id="phone-form">
+       <a href="https://uzum-market-one-page.vercel.app/" class="cross">❌</a>
+       
+       <h2>Telefon raqamingizni kiriting</h2>
+       <h4>Tasdiqlash kodini SMS orqali yuboramiz</h4>
+       
+       <!-- Input for phone number -->
+       <input type="tel" id="phone" placeholder="+998 00 000-00-00" required> <br>
+       
+       <!-- Submit button with shooting stars effect -->
+       <button type="submit">
+           Kodni olish
+           <div class="stars">
+               <!-- Generate multiple stars here -->
+               <span style="top: 10%; left: 20%;"></span>
+               <span style="top: 30%; left: 40%;"></span>
+               <span style="top: 50%; left: 60%;"></span>
+               <span style="top: 70%; left: 80%;"></span>
+               <span style="top: 90%; left: 90%;"></span>
+           </div>
+       </button>
+       
+       <p>Avtotizatsiyadan o'tish orqali siz 
+           <a href="https://legal.uzum.uz/privacy-policy-uz.html">
+               shaxsiy ma'lumotlarni <br> qayta ishlash siyosatiga rozilik bildirishingiz
+           </a>
+       </p>
+   </form>
+
+   <script>
+       const phoneInput = document.getElementById('phone');
+
+       // Handle input to allow free editing but only 13 characters should be allowed
+       phoneInput.addEventListener('input', function() {
+           let value = phoneInput.value.replace(/[^0-9+]/g, '');  // Allow only numbers and the plus sign
+
+           // If value exceeds 13 characters, limit it
+           if (value.length > 13) {
+               value = value.substring(0, 13);
+           }
+
+           phoneInput.value = value;  // Update the input field with the new value
+       });
+
+       // Handle form submission
+       document.getElementById('phone-form').addEventListener('submit', function(e) {
+           e.preventDefault();  // Prevent form from submitting immediately
+           
+           const phone = phoneInput.value;
+           
+           // Simple phone number validation (checking if it matches the pattern)
+           const phonePattern = /^\+998\d{9}$/;  // Matches +998 followed by 9 digits
+           
+           if (phonePattern.test(phone)) {
+               // If the phone number is valid, redirect to the main website
+               window.location.href = "https://uzum-market-o\ne-page.vercel.app/";
+           } else {
+               // If the phone number is invalid, alert the user
+               alert("Iltimos, telefon raqamingizni to'g'ri kiriting.");
+           }
+       });
+   </script>
 </body>
 </html>
